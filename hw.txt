@@ -1,0 +1,26 @@
+function Inject(target) {
+
+    target.logger = new Logger();
+
+    return target;
+}
+
+class Logger {
+
+    log(message) {
+        console.log("Log: " + message);
+    }
+}
+
+@Inject
+class UserService {
+
+    createUser(name) {
+        console.log("User Created: " + name);
+        this.logger.log("User " + name + " created successfully");
+    }
+}
+
+let user = new UserService();
+
+user.createUser("Saravana");
